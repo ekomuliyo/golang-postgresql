@@ -1,0 +1,5 @@
+{
+    "heroku": {
+        "goVersion": "go1.15"
+    }
+}
