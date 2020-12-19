@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"golang-postgresql/routes"
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -16,15 +18,17 @@ func main() {
 		log.Fatalf("Error loading .env file")
 	}
 
-	// // setting port dev / prod
-	// var port string
-	// if os.Getenv("PORT") == "" {
-	// 	port = ":" + os.Getenv("APP_PORT")
-	// } else {
-	// 	port = ":" + os.Getenv("PORT")
-	// }
+	// setting port dev / prod
+	var port string
+	if os.Getenv("PORT") == "" {
+		port = os.Getenv("APP_PORT")
+	} else {
+		port = os.Getenv("PORT")
+	}
+
+	fmt.Println(port)
 
 	e := routes.Init()
 
-	e.Logger.Fatal(e.Start(""))
+	e.Logger.Fatal(e.Start(":" + port))
 }
