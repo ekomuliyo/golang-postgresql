@@ -1,1 +1,1 @@
-web : bin/golang-postgresql
+web bin/golang-postgresql
