@@ -26,7 +26,7 @@ func main() {
 		port = os.Getenv("PORT")
 	}
 
-	fmt.Println(port)
+	fmt.Println("localhost:" + port)
 
 	e := routes.Init()
 
