@@ -25,7 +25,7 @@
 #   unused-packages = true
 
 [metadata.heroku]
-  root-package = "bin/golang-postgresql"
+  root-package = "github.com/ekomuliyo/golang-postgresql"
   go-version = "go1.15"
   install = [ "./routes/..."]
   ensure = "true"
