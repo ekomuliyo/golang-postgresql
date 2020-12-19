@@ -24,6 +24,12 @@
 #   go-tests = true
 #   unused-packages = true
 
+[metadata.heroku]
+  root-package = "github.com/ekomuliyo/golang-postgresql"
+  go-version = "go1.15"
+  install = [ "." ]
+  ensure = "false"
+
 
 [prune]
   go-tests = true
@@ -32,3 +38,4 @@
 [[constraint]]
   name = "github.com/labstack/echo"
   version = "3.1.0"
+
