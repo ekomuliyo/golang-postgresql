@@ -27,7 +27,7 @@
 [metadata.heroku]
   root-package = "github.com/ekomuliyo/golang-postgresql"
   go-version = "go1.15"
-  install = [ "./routes/..."]
+  install = [ "./routes/...", "./vendor/..."]
   ensure = "false"
 
 [prune]
