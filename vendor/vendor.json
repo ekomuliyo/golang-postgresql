@@ -1,5 +1,7 @@
 {
     "heroku": {
-        "goVersion": "go1.15"
+        "run": [
+            "./cmd/..."
+        ]
     }
 }
