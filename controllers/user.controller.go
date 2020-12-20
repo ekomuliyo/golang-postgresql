@@ -23,7 +23,9 @@ func RegisterUser(c echo.Context) error {
 	result, err := models.RegisterUser(username, hashPassword, email, IDGroup)
 
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, err.Error())
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"message": err.Error(),
+		})
 	}
 
 	return c.JSON(http.StatusOK, result)

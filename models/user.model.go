@@ -6,21 +6,38 @@ import (
 	"golang-postgresql/db"
 	"golang-postgresql/helpers"
 	"net/http"
+
+	validator "github.com/go-playground/validator"
 )
 
 // User ..
 type User struct {
 	IDUser   int    `json:"id_user,omitempty"`
-	Username string `json:"username"`
-	Password string `json:"password,omitempty"`
-	Email    string `json:"email"`
-	IDGroup  int    `json:"id_group"`
+	Username string `json:"username" validate:"required"`
+	Password string `json:"password,omitempty" validate:"required"`
+	Email    string `json:"email" validate:"required,email"`
+	IDGroup  int    `json:"id_group" validate:"required"`
 }
 
 // RegisterUser ..
 func RegisterUser(username string, password string, email string, IDGroup int) (Response, error) {
 
 	var res Response
+
+	v := validator.New()
+
+	user := User{
+		Username: username,
+		Password: password,
+		Email:    email,
+		IDGroup:  IDGroup,
+	}
+
+	e := v.Struct(user)
+
+	if e != nil {
+		return res, e
+	}
 
 	con := db.CreateCon()
 
