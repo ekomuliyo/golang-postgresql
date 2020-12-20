@@ -2,7 +2,6 @@ package db
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 
@@ -13,6 +12,7 @@ import (
 var dbGlobal *sql.DB
 var err error
 
+// Init ...
 func Init() {
 
 	// load env
@@ -30,7 +30,6 @@ func Init() {
 
 	var url string = "postgres://" + dbUsername + ":" + dbPassword + "@" + dbHost + ":" + dbPort + "/" + dbName + "?sslmode=disable"
 	db, err := sql.Open("postgres", url)
-	fmt.Println(db)
 
 	if err != nil {
 		panic("error connection")
@@ -61,6 +60,7 @@ func Init() {
 	dbGlobal = db
 }
 
+// CreateCon ...
 func CreateCon() *sql.DB {
 	return dbGlobal
 }
