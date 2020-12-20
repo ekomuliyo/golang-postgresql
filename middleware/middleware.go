@@ -9,10 +9,12 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+// IsAuthenticated ...
 var IsAuthenticated = middleware.JWTWithConfig(middleware.JWTConfig{
 	SigningKey: []byte("secret"),
 })
 
+// AdminMiddleware ...
 func AdminMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		hToken := c.Request().Header.Get("Authorization") // Bearer token12647
