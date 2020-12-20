@@ -5,7 +5,9 @@ import (
 	"golang-postgresql/models"
 	"net/http"
 	"strconv"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 )
 
@@ -31,7 +33,7 @@ func LoginUser(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
 
-	res, err := models.LoginUser(email, password)
+	res, IDGroup, err := models.LoginUser(email, password)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
 			"message": err.Error(),
@@ -42,7 +44,24 @@ func LoginUser(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	return c.String(http.StatusOK, "Login success")
+	// create token jwt
+	token := jwt.New(jwt.SigningMethodHS256)
+
+	// set claims
+	claims := token.Claims.(jwt.MapClaims)
+	claims["email"] = email
+	claims["id_group"] = IDGroup
+	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+
+	// generate encoded token
+	tokenResult, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, map[string]string{
+		"token": tokenResult,
+	})
 }
 
 func GetAllUser(c echo.Context) error {

@@ -2,6 +2,41 @@
 
 
 [[projects]]
+  digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
+  digest = "1:e1cbe9ce835f515ce57500b8db6b94f399650bea2ddfac59f9b05d98db77a96d"
+  name = "github.com/go-playground/locales"
+  packages = [
+    ".",
+    "currency",
+  ]
+  pruneopts = "UT"
+  revision = "9f105231d3a5f6877a2bf8321dfa15ea6f844b1b"
+  version = "v0.13.0"
+
+[[projects]]
+  digest = "1:0d18fff5db6983e912eb2ac15038ed3eabb8ec03c9bd9129b10cd0213f50ec6d"
+  name = "github.com/go-playground/universal-translator"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f87b1403479a348651dbf5f07f5cc6e5fcf07008"
+  version = "v0.17.0"
+
+[[projects]]
+  digest = "1:9dc3945909f77eaff501d7be8caa1d2c1a9bba9602f92527051d69d973322e58"
+  name = "github.com/go-playground/validator"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "456221b630452990f72c0f13179e5f2ae728a723"
+  version = "v10.4.1"
+
+[[projects]]
   digest = "1:ecd9aa82687cf31d1585d4ac61d0ba180e42e8a6182b85bd785fcca8dfeefc1b"
   name = "github.com/joho/godotenv"
   packages = ["."]
@@ -10,23 +45,36 @@
   version = "v1.3.0"
 
 [[projects]]
-  digest = "1:bf618941b014c2a86e4a6f39d4a26541c06fc63387fc50d4694d67eac2151f4a"
+  digest = "1:efd601ad1d1189884f37ed075fadb5bbd17f1f5acf5862827247c6da56d125ba"
   name = "github.com/labstack/echo"
-  packages = ["."]
+  packages = [
+    ".",
+    "middleware",
+  ]
   pruneopts = "UT"
   revision = "38772c686c76b501f94bd6cd5b77f5842e93b559"
   version = "v3.3.10"
 
 [[projects]]
-  digest = "1:9bc108827ac1d8783dea294f1ef07732fa4ca7d6e20518c04888a85828eba4ce"
+  digest = "1:e8e65826d60fd82637fb9df06ecd651191b599f4a8f72b86362012f288778320"
   name = "github.com/labstack/gommon"
   packages = [
+    "bytes",
     "color",
     "log",
+    "random",
   ]
   pruneopts = "UT"
   revision = "4919956f6fb227b548f004da27c7c6b20fba499f"
   version = "v0.3.0"
+
+[[projects]]
+  digest = "1:9e016de2759aaa06e25a3a83400b81f99fa0df8de3a4bdecf30945f254f4d20b"
+  name = "github.com/leodido/go-urn"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "6c96508144d00b380edbc8bda077e27b832d0c7b"
+  version = "v1.2.1"
 
 [[projects]]
   digest = "1:62f794e53445d22aa4d1709a9123053b9bf7c3284571b5b807f80d57e1648844"
@@ -74,13 +122,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:380ce5683b2718b46624edb9b10705e0088d12501401977e8ffaa8aa79bb70fe"
+  digest = "1:0e35ad60d20306d6c194860862a4e5b2ba76a8aafd71064c904728e9a5f26a7a"
   name = "golang.org/x/crypto"
   packages = [
     "acme",
     "acme/autocert",
     "bcrypt",
     "blowfish",
+    "sha3",
   ]
   pruneopts = "UT"
   revision = "9d1352758620574fd6fc23c31c59c4333b4b3fff"
@@ -95,9 +144,10 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:03bcc503808bc84331915e179ae1ef87aa0cf5b60ecbc9d3517a4c0cf134e4ec"
+  digest = "1:96c56b1140fb0354849571e8066c432feeb1a35cfe4e4e7a8cfc42383aa330b6"
   name = "golang.org/x/sys"
   packages = [
+    "cpu",
     "internal/unsafeheader",
     "unix",
   ]
@@ -133,8 +183,11 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/dgrijalva/jwt-go",
+    "github.com/go-playground/validator",
     "github.com/joho/godotenv",
     "github.com/labstack/echo",
+    "github.com/labstack/echo/middleware",
     "github.com/lib/pq",
     "golang.org/x/crypto/bcrypt",
   ]

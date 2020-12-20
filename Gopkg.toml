@@ -27,8 +27,6 @@
 [metadata.heroku]
   root-package = "github.com/ekomuliyo/golang-postgresql"
   go-version = "go1.15"
-  install = [ "./routes/..."]
-  ensure = "true"
 
 [prune]
   go-tests = true
@@ -46,3 +44,11 @@
 [[constraint]]
   branch = "master"
   name = "golang.org/x/crypto"
+
+[[constraint]]
+  name = "github.com/dgrijalva/jwt-go"
+  version = "3.2.0"
+
+[[constraint]]
+  name = "github.com/go-playground/validator"
+  version = "10.4.1"

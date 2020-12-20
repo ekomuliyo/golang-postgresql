@@ -43,37 +43,38 @@ func RegisterUser(username string, password string, email string, IDGroup int) (
 }
 
 // LoginUser ..
-func LoginUser(email string, password string) (bool, error) {
+func LoginUser(email string, password string) (bool, int, error) {
 
 	var user User
 	var passwordHash string
+	var IDGroup int
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT email, password FROM users WHERE email = $1"
+	sqlStatement := "SELECT email, password, id_group FROM users WHERE email = $1"
 
 	err := con.QueryRow(sqlStatement, email).Scan(
-		&user.Email, &passwordHash,
+		&user.Email, &passwordHash, &IDGroup,
 	)
 
 	if err == sql.ErrNoRows {
 		fmt.Println("User not found")
-		return false, err
+		return false, 0, err
 	}
 
 	if err != nil {
 		fmt.Println("Query error")
-		return false, err
+		return false, 0, err
 	}
 
 	matchPassword, err := helpers.CheckPasswordHash(password, passwordHash)
 
 	if !matchPassword {
 		fmt.Println("Hash and password doesn't match")
-		return false, err
+		return false, 0, err
 	}
 
-	return true, nil
+	return true, IDGroup, nil
 }
 
 // GetAllUser ..
