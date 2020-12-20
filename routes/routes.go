@@ -10,7 +10,6 @@ import (
 
 // Init ...
 func Init() *echo.Echo {
-
 	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {
