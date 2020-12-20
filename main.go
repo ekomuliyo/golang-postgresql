@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"golang-postgresql/db"
 	"golang-postgresql/routes"
 	"log"
 	"os"
@@ -26,7 +26,10 @@ func main() {
 		port = os.Getenv("PORT")
 	}
 
-	fmt.Println("localhost:" + port)
+	// fmt.Println(port)
+
+	// initial db
+	db.Init()
 
 	e := routes.Init()
 
