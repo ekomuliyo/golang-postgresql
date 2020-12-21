@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "f5802f30-2a2f-4360-b501-9f6e02d535a8",
+		"name": "booking-room",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "eko",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eko123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ekomuliyo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "id_group",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register_user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody)\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token)\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "eko muliyo12",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eko123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ekomuliyo12@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "id_group",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login_user?email=ekomuliyo@gmail.com&password=eko123",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login_user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "ekomuliyo@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "eko123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/get_all_user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"get_all_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "eko muliyo12",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eko123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ekomuliyo12@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "id_group",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/delete_user?id=1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"delete_user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "eko muliyo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "eko123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ekomuliyo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "id_group",
+									"value": "1",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/update_user?id=1&username=eko ubah&email=ekoubah@gmail.com",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"update_user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "username",
+									"value": "eko ubah"
+								},
+								{
+									"key": "email",
+									"value": "ekoubah@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
