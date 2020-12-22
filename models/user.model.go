@@ -16,36 +16,36 @@ type User struct {
 	Username string `json:"username" validate:"required"`
 	Password string `json:"password,omitempty" validate:"required"`
 	Email    string `json:"email" validate:"required,email"`
+	Photo    string `json:"photo" validate:"required"`
 	IDGroup  int    `json:"id_group" validate:"required"`
 }
 
 // RegisterUser ..
-func RegisterUser(username string, password string, email string, IDGroup int) (Response, error) {
+func RegisterUser(username string, password string, email string, photo string, IDGroup int) (Response, error) {
 
 	var res Response
 
 	v := validator.New()
-
 	user := User{
 		Username: username,
 		Password: password,
 		Email:    email,
+		Photo:    photo,
 		IDGroup:  IDGroup,
 	}
 
 	e := v.Struct(user)
-
 	if e != nil {
 		return res, e
 	}
 
 	con := db.CreateCon()
-
-	sqlStatement := "INSERT INTO users (username, password, email, id_group) VALUES ($1, $2, $3, $4) RETURNING id_user"
+	sqlStatement := "INSERT INTO users (username, password, email, photo, id_group) VALUES ($1, $2, $3, $4, $5) RETURNING id_user"
 
 	var idUser int64
-	err := con.QueryRow(sqlStatement, username, password, email, IDGroup).Scan(&idUser)
+	err := con.QueryRow(sqlStatement, username, password, email, photo, IDGroup).Scan(&idUser)
 	if err != nil {
+		fmt.Println(err)
 		return res, err
 	}
 
@@ -101,7 +101,7 @@ func GetAllUser() (Response, error) {
 	var res Response
 
 	con := db.CreateCon()
-	sqlStatement := "SELECT id_user, username, email, id_group FROM users ORDER BY id_user"
+	sqlStatement := "SELECT id_user, username, email, photo, id_group FROM users ORDER BY id_user"
 
 	rows, err := con.Query(sqlStatement)
 	defer rows.Close()
@@ -111,7 +111,7 @@ func GetAllUser() (Response, error) {
 	}
 
 	for rows.Next() {
-		err = rows.Scan(&user.IDUser, &user.Username, &user.Email, &user.IDGroup)
+		err = rows.Scan(&user.IDUser, &user.Username, &user.Email, &user.Photo, &user.IDGroup)
 		if err != nil {
 			return res, err
 		}

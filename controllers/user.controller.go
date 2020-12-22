@@ -3,8 +3,12 @@ package controllers
 import (
 	"golang-postgresql/helpers"
 	"golang-postgresql/models"
+	"io"
+	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -18,9 +22,37 @@ func RegisterUser(c echo.Context) error {
 	email := c.FormValue("email")
 	IDGroup, err := strconv.Atoi(c.FormValue("id_group"))
 
+	photo, err := c.FormFile("photo")
+	if err != nil {
+		return err
+	}
+
+	srcPhoto, err := photo.Open()
+	if err != nil {
+		return err
+	}
+	defer srcPhoto.Close()
+
+	var randNumber string = strconv.Itoa(rand.Intn(10000))
+	var nameFile string = "images/photo-" + randNumber + "." + strings.Split(photo.Filename, ".")[1]
+	dstPhoto, err := os.Create(nameFile)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"message": err.Error(),
+		})
+	}
+	defer dstPhoto.Close()
+
+	// copy file
+	if _, err = io.Copy(dstPhoto, srcPhoto); err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"message": err.Error(),
+		})
+	}
+
 	hashPassword, _ := helpers.HashPassowrd(password)
 
-	result, err := models.RegisterUser(username, hashPassword, email, IDGroup)
+	result, err := models.RegisterUser(username, hashPassword, email, nameFile, IDGroup)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{
@@ -28,7 +60,8 @@ func RegisterUser(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, result)
+	// return c.JSON(http.StatusOK, "ok")
+	return c.JSON(http.StatusInternalServerError, result)
 }
 
 func LoginUser(c echo.Context) error {

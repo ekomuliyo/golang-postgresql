@@ -48,9 +48,8 @@ func Init() {
 				username VARCHAR (50) UNIQUE NOT NULL,
 				password VARCHAR (450) NOT NULL,
 				email VARCHAR (255) UNIQUE NOT NULL,
-				id_group INT DEFAULT 1,
-				created_on TIMESTAMP without time zone DEFAULT now(),
-				last_login TIMESTAMP
+				photo VARCHAR (50) UNIQUE NOT NULL,
+				id_group INT DEFAULT 2
 			);`)
 
 	if err != nil {
