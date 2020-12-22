@@ -33,6 +33,7 @@ func Init() *echo.Echo {
 
 	// Group Guest
 	groupGuest := e.Group("/guest", middleware.IsAuthenticated)
+	groupGuest.GET("/get_all_room", controllers.GetAllRoom)
 
 	return e
 }

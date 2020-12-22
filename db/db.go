@@ -50,6 +50,12 @@ func Init() {
 				email VARCHAR (255) UNIQUE NOT NULL,
 				photo VARCHAR (50) UNIQUE NOT NULL,
 				id_group INT DEFAULT 2
+			);
+			CREATE TABLE IF NOT EXISTS rooms (
+				id_room serial PRIMARY KEY,
+				name_room VARCHAR (255) NOT NULL,
+				price INT NOT NULL,
+				max_capacity INT NOT NULL
 			);`)
 
 	if err != nil {
