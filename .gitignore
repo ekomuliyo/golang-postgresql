@@ -17,4 +17,3 @@
 #.env
 .env.prod
 .env.dev
-.env
