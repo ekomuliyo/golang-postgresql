@@ -14,6 +14,22 @@ var IsAuthenticated = middleware.JWTWithConfig(middleware.JWTConfig{
 	SigningKey: []byte("secret"),
 })
 
+// AuthenticatedAsset ...
+func AuthenticatedAsset(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		tokenRequest := c.FormValue("token")
+		_, err := jwt.Parse(tokenRequest, func(token *jwt.Token) (interface{}, error) {
+			return []byte("secret"), nil
+		})
+		if err != nil {
+			return c.JSON(http.StatusUnauthorized, map[string]string{
+				"message": "Not authorized",
+			})
+		}
+		return next(c)
+	}
+}
+
 // AdminMiddleware ...
 func AdminMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
