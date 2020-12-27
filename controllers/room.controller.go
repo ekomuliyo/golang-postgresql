@@ -40,3 +40,42 @@ func GetAllRoom(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, result)
 }
+
+func DeleteRoom(c echo.Context) error {
+
+	id := c.FormValue("id")
+	convID, err := strconv.Atoi(id)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	result, err := models.DeleteRoom(convID)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.JSON(http.StatusOK, result)
+}
+
+func UpdateRoom(c echo.Context) error {
+
+	id := c.FormValue("id")
+	price := c.FormValue("price")
+	maxCapacity := c.FormValue("max_capacity")
+	convID, err := strconv.Atoi(id)
+	convPrice, err := strconv.Atoi(price)
+	convMaxCapacity, err := strconv.Atoi(maxCapacity)
+
+	nameRoom := c.FormValue("name_room")
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	result, err := models.UpdateRoom(convID, nameRoom, convPrice, convMaxCapacity)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, err.Error())
+	}
+
+	return c.JSON(http.StatusOK, result)
+}

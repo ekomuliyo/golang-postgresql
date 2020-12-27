@@ -53,7 +53,7 @@ func StoreRoom(nameRoom string, price int, maxCapacity int) (Response, error) {
 
 }
 
-// GetAllRoom
+// GetAllRoom ..
 func GetAllRoom() (Response, error) {
 	var room Room
 	var arrayRoom []Room
@@ -83,4 +83,67 @@ func GetAllRoom() (Response, error) {
 	res.Data = arrayRoom
 
 	return res, nil
+}
+
+// DeleteRoom ..
+func DeleteRoom(id int) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "DELETE FROM rooms WHERE id_room = $1"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(id)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return res, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
+
+	return res, nil
+}
+
+// UpdateRoom ..
+func UpdateRoom(id int, nameRoom string, price int, maxCapacity int) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+
+	sqlStatement := "UPDATE rooms SET name_room = $1, price = $2, max_capacity = $3 WHERE id_room = $4"
+
+	stmt, err := con.Prepare(sqlStatement)
+
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(nameRoom, price, maxCapacity, id)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rows_affected": rowsAffected,
+	}
+
+	return res, nil
+
 }

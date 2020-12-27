@@ -56,7 +56,24 @@ func Init() {
 				name_room VARCHAR (255) NOT NULL,
 				price INT NOT NULL,
 				max_capacity INT NOT NULL
-			);`)
+			);
+			CREATE TABLE IF NOT EXISTS status_booking_room (
+				id_status_booking serial PRIMARY KEY,
+				status_booking VARCHAR (155) NOT NULL,
+				description VARCHAR (255) NULL
+			);
+			CREATE TABLE IF NOT EXISTS booking_room (
+				id_booking_room serial PRIMARY KEY,
+				id_room INT NOT NULL,
+				id_user INT NOT NULL,
+				date_booking DATE NOT NULL,
+				amount_capacity INT NOT NULL,
+				id_status_booking INT NOT NULL,
+				FOREIGN KEY(id_room) REFERENCES rooms (id_room),
+				FOREIGN KEY(id_user) REFERENCES users (id_user),
+				FOREIGN KEY(id_status_booking) REFERENCES status_booking_room(id_status_booking)
+			);
+			`)
 
 	if err != nil {
 		panic(err)
