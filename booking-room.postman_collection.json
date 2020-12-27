@@ -6,267 +6,516 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "admin",
 			"item": [
 				{
-					"name": "register_user",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "eko",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "eko123",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "ekomuliyo@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "id_group",
-									"value": "1",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/register_user",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"register_user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login_user",
-					"event": [
+					"name": "user",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const jsonData = JSON.parse(responseBody)\r",
-									"postman.setEnvironmentVariable(\"token\", jsonData.token)\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "eko muliyo12",
-									"type": "text"
+							"name": "get_all_user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "eko123",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "ekomuliyo12@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "id_group",
-									"value": "1",
-									"type": "text"
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/get_all_user",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"get_all_user"
+									]
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{baseUrl}}/login_user?email=ekomuliyo@gmail.com&password=eko123",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"login_user"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "ekomuliyo@gmail.com"
+						{
+							"name": "delete_user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "eko123"
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "eko muliyo12",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "eko123",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ekomuliyo12@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "id_group",
+											"value": "1",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/delete_user?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"delete_user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "update_user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "username",
+											"value": "eko muliyo",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "eko123",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ekomuliyo@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "id_group",
+											"value": "1",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/update_user?id=1&username=eko ubah&email=ekoubah@gmail.com",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"update_user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										},
+										{
+											"key": "username",
+											"value": "eko ubah"
+										},
+										{
+											"key": "email",
+											"value": "ekoubah@gmail.com"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "get_all_user",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+					"name": "room",
+					"item": [
+						{
+							"name": "get_all_room",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/get_all_room",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"get_all_room"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/get_all_user",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"get_all_user"
-							]
+						{
+							"name": "store_room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name_room",
+											"value": "Ruangan Depan",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "2000",
+											"type": "text"
+										},
+										{
+											"key": "max_capacity",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/get_all_booking_room",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"get_all_booking_room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name_room",
+											"value": "Ruangan Aula",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "200000",
+											"type": "text"
+										},
+										{
+											"key": "max_capacity",
+											"value": "20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/update_room?id=2&name_room=nama ubah&price=1000&max_capacity=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"update_room"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										},
+										{
+											"key": "name_room",
+											"value": "nama ubah"
+										},
+										{
+											"key": "price",
+											"value": "1000"
+										},
+										{
+											"key": "max_capacity",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name_room",
+											"value": "Ruangan Aula",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "200000",
+											"type": "text"
+										},
+										{
+											"key": "max_capacity",
+											"value": "20",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/delete_room?id=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"delete_room"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "delete_user",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "eko muliyo12",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "eko123",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "ekomuliyo12@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "id_group",
-									"value": "1",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/delete_user?id=1",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"delete_user"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update_user",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "username",
-									"value": "eko muliyo",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "eko123",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "ekomuliyo@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "id_group",
-									"value": "1",
-									"type": "text"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/update_user?id=1&username=eko ubah&email=ekoubah@gmail.com",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"update_user"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "1"
-								},
-								{
-									"key": "username",
-									"value": "eko ubah"
-								},
-								{
-									"key": "email",
-									"value": "ekoubah@gmail.com"
-								}
-							]
-						}
-					},
-					"response": []
+					"name": "booking-room",
+					"item": []
 				}
 			]
+		},
+		{
+			"name": "guest",
+			"item": []
+		},
+		{
+			"name": "login_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = JSON.parse(responseBody)\r",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "eko muliyo12",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "eko123",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ekomuliyo12@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "id_group",
+							"value": "1",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login_user?email=eko123@gmail.com&password=eko123",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login_user"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "eko123@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "eko123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "rian",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "rian123",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "rian123@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/D:/Downloads/pp.jpg"
+						},
+						{
+							"key": "id_group",
+							"value": "2",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/register_user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"register_user"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
