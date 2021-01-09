@@ -251,13 +251,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/admin/get_all_booking_room",
+									"raw": "{{baseUrl}}/admin/store_room",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"admin",
-										"get_all_booking_room"
+										"store_room"
 									]
 								}
 							},
@@ -387,7 +387,89 @@
 				},
 				{
 					"name": "booking-room",
-					"item": []
+					"item": [
+						{
+							"name": "get_all_booking_room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/admin/get_all_booking_room",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"get_all_booking_room"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store_booking_room",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id_room",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "id_user",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_booking",
+											"value": "2021-01-10",
+											"type": "text"
+										},
+										{
+											"key": "amount_capacity",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/store_booking_room",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"store_booking_room"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -475,17 +557,17 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "rian",
+							"value": "eko",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "rian123",
+							"value": "eko123",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "rian123@gmail.com",
+							"value": "eko123@gmail.com",
 							"type": "text"
 						},
 						{
@@ -495,7 +577,7 @@
 						},
 						{
 							"key": "id_group",
-							"value": "2",
+							"value": "1",
 							"type": "text"
 						}
 					],

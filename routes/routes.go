@@ -37,6 +37,7 @@ func Init() *echo.Echo {
 	groupAdmin.PUT("/update_room", controllers.UpdateRoom)
 
 	groupAdmin.GET("/get_all_booking_room", controllers.GetAllBookingRoom)
+	groupAdmin.POST("/store_booking_room", controllers.StoreBookingRoom)
 
 	// Group Guest
 	groupGuest := e.Group("/guest", middleware.IsAuthenticated)
